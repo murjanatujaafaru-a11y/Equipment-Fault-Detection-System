@@ -1,0 +1,8 @@
+streamlit>=1.37.1
+streamlit
+torch
+torchvision
+pillow>=10.4.0
+numpy
+gdown
+huggingface_hub
