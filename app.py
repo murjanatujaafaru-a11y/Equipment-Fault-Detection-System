@@ -8,7 +8,7 @@ from utils.preprocessing import preprocess
 st.set_page_config(page_title="Pipeline Leak", layout="centered")
 
 st.title("⛑️ Pipeline Leak")
-st.write("Upload an pipe leak image to classify it into 6 categories.")
+st.write("Upload a pipe leak image to classify it into 6 categories.")
 
 @st.cache_resource
 def get_model():
