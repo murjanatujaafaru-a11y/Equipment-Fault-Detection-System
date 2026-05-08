@@ -10,7 +10,7 @@ import streamlit as st
 from PIL import Image
 from services.inference import __init__.py, predict
 
-from services.inference import load_model, predict
+
 from utils.preprocessing import preprocess
 
 # UI SETUP
