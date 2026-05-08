@@ -8,10 +8,12 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import streamlit as st
 from PIL import Image
-from services.inference import __init__.py, predict
 
-
+from services.inference import load_model, predict
 from utils.preprocessing import preprocess
+
+
+
 
 # UI SETUP
 st.set_page_config(page_title="Pipeline Leak", layout="centered")
