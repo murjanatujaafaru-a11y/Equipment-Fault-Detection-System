@@ -1,5 +1,14 @@
 import streamlit as st
 from PIL import Image
+import sys
+import os
+
+# Adds the current directory to the python path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+import streamlit as st
+from PIL import Image
+from services.inference import load_model, predict
 
 from services.inference import load_model, predict
 from utils.preprocessing import preprocess
