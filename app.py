@@ -36,6 +36,7 @@ model = get_model()
 #     3: "pitted_surface",
 #     4: "rolled-in_scale",
 #     5: "scratches"
+# }
 
 # FILE UPLOAD
 uploaded_file = st.file_uploader("Upload Image", type=["jpg", "png", "jpeg"])
