@@ -9,10 +9,8 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import streamlit as st
 from PIL import Image
 
-from services.inference import __init__, predict
+from services.inference import predict
 from utils.preprocessing import preprocess
-
-
 
 
 # UI SETUP
