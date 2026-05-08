@@ -1,16 +1,23 @@
 import streamlit as st
 from PIL import Image
-import sys
 import os
+
+import sys
+import pathlib
+
+# This gets the directory where app.py is located
+current_dir = pathlib.Path(__file__).parent.resolve()
+
+# Add the directory to sys.path if it's not already there
+if str(current_dir) not in sys.path:
+    sys.path.insert(0, str(current_dir))
+    
+# Now try the imports
+from services.inference import predict
+from utils.preprocessing import preprocess
 
 # Adds the current directory to the python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-import streamlit as st
-from PIL import Image
-
-from services.inference import predict
-from utils.preprocessing import preprocess
 
 
 # UI SETUP
