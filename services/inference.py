@@ -6,10 +6,13 @@ import os
 # Ensure the root directory is in the path for this sub-module too
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from model.model import leak_model.pth
+# Import the class (the skeleton)
+from model.model import SurfaceDefectCNN 
+model = SurfaceDefectCNN()
+
 import gdown
 import json
-import os
+
 # from huggingface_hub import hf_hub_download
 
 #To Load our model from `Hugging Face`, uncomment the below code and comment out the `Google Drive download` section
@@ -52,7 +55,7 @@ idx_to_class = {v: k for k, v in class_to_idx.items()}
 # Load model
 def load_model():
     download_model()  # downloads only if file doesn't exist
-    model = build_model()
+    model = SurfaceDefectCNN()
     model.load_state_dict(
         torch.load("model/leak_model", map_location="cpu")
     )

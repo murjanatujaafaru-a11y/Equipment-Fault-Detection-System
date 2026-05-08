@@ -1,6 +1,6 @@
 def predict(data):
     # Initialize the class
-    model = leak_model.pth() 
+    model = leak_model
     
     # Load your saved weights
     model.load_state_dict(torch.load('model/leak_model.pth', map_location='cpu'))
