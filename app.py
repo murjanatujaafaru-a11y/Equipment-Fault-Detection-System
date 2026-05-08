@@ -5,19 +5,21 @@ import os
 import sys
 import pathlib
 
-# This gets the directory where app.py is located
-current_dir = pathlib.Path(__file__).parent.resolve()
 
-# Add the directory to sys.path if it's not already there
-if str(current_dir) not in sys.path:
-    sys.path.insert(0, str(current_dir))
-    
-# Now try the imports
+# 1. Get the absolute path of the directory containing app.py
+root_path = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Add that path to the front of sys.path
+if root_path not in sys.path:
+    sys.path.insert(0, root_path)
+
+# 3. Debug print (this will show up in your Streamlit logs)
+print(f"DEBUG: Root path added to sys.path: {root_path}")
+print(f"DEBUG: Files found in root: {os.listdir(root_path)}")
+
+# 4. NOW do the imports
 from services.inference import predict
 from utils.preprocessing import preprocess
-
-# Adds the current directory to the python path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 
 # UI SETUP
