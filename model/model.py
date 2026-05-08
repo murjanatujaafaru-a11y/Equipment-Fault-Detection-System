@@ -1,6 +1,6 @@
 def predict(data):
     # Initialize the class
-    model = SurfaceDefectCNN() 
+    model = leak_model.pth() 
     
     # Load your saved weights
     model.load_state_dict(torch.load('model/leak_model.pth', map_location='cpu'))
