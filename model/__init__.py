@@ -1,1 +1,1 @@
-from __init__ import leak_model.py
+from __init__ import leak_model
