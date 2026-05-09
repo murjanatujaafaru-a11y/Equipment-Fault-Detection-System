@@ -1,6 +1,6 @@
 import torch
 import torch.nn.functional as F
-from model import leak_model.pth
+from model import leak_model
 import gdown
 import json
 import os
