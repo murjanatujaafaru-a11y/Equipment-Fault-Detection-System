@@ -7,7 +7,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Import the class (the skeleton)
-from model.model import SurfaceDefectCNN 
+from leak_model import SurfaceDefectCNN 
 model = SurfaceDefectCNN()
 
 import gdown

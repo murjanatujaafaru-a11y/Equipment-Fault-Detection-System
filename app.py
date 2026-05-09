@@ -18,7 +18,6 @@ print(f"DEBUG: Root path added to sys.path: {root_path}")
 print(f"DEBUG: Files found in root: {os.listdir(root_path)}")
 
 # 4. NOW do the imports
-from services.inference import predict
 from utils.preprocessing import preprocess
 from model import build_model
 
