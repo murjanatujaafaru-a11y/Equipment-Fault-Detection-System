@@ -4,4 +4,5 @@ __pycache__/
 venv/
 .env/
 .ipynb_checkpoints/
+model/*.pth
 text.md
