@@ -6,11 +6,9 @@ import torch.nn.functional as F
 from torchvision import transforms
 from PIL import Image
 
-
-# PASTE THE CLASS DIRECTLY HERE
-class SurfaceDefectCNN(nn.Module):
-    def load_model (self, num_classes=6):
-        super(SurfaceDefectCNN, self).__init__()
+class leak_model(nn.Module):  # The name here must match your import
+    def __init__(self):
+        super(leak_model, self).__init__()
         self.conv1 = nn.Conv2d(1, 32, kernel_size=3, padding=1)
         self.bn1 = nn.BatchNorm2d(32)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
