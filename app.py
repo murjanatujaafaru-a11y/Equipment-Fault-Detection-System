@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 
 # This tells Python: "From the file model.py, import the function/class leak_model"
-from model import leak_model
+from model.leak_model import leak_model
 from services.inference import load_model, predict
 from utils.preprocessing import preprocess
 

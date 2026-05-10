@@ -1,1 +1,1 @@
-from .leak_model import leak_model
+from .model import leak_model
