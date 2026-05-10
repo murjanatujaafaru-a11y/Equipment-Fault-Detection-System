@@ -21,7 +21,14 @@ def download_model():
 
 # Load class mapping
 # These should NOT be inside a function if you want them available globally
-with open("model/class_to_idx.json", "r") as f:
+import os
+
+# Get the directory where app.py is located
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+json_path = os.path.join(BASE_DIR, "model", "class_to_idx.json")
+
+# Load class mapping
+with open(json_path, "r") as f:
     class_to_idx = json.load(f)
 
 idx_to_class = {v: k for k, v in class_to_idx.items()}
