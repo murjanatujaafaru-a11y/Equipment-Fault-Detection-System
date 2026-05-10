@@ -1,4 +1,4 @@
-🚀 Live Demo: Click here to view the Deployment
+🚀 **Live Demo: [Click here to view the Deployment](https://equipment-fault-detection-system-dahwzw95kmzhlu4x45subd.streamlit.app/)**
 # Equipment Fault Detection using Sensor Data Images
 ### Human Capital Digitalisation Initiative (NCDMB | 3Logy | Seplat)
 
