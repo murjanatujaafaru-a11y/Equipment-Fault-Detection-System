@@ -11,7 +11,7 @@ st.set_page_config(page_title=""st.title("Equipment Fault Detection System")
 , layout="centered")
 
 st.title("⛑️ Equipment Fault Detection system")
-st.write("Ust.write("Upload a sensor data image to classify it into 6 categories.")
+st.write("Upload a sensor data image to classify it into 6 categories.")
 
 
 # LOAD MODEL
