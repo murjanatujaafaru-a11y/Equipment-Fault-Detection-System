@@ -35,8 +35,9 @@ idx_to_class = {v: k for k, v in class_to_idx.items()}
 
 # Load model
 def load_model():
-    download_model()  # downloads only if file doesn't exist
-    model = build_model()
+    download_model()
+    # Explicitly tell the model there are 6 classes
+    model = leak_model(num_classes=6) 
     model.load_state_dict(
         torch.load("model/leak_model.pth", map_location="cpu")
     )
