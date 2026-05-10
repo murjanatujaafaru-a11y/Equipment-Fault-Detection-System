@@ -7,10 +7,12 @@ from services.inference import load_model, predict
 from utils.preprocessing import preprocess
 
 # UI SETUP
-st.set_page_config(page_title="Equipment_Fault_Detection", layout="centered")
+st.set_page_config(page_title=""st.title("Equipment Fault Detection System")
+, layout="centered")
 
-st.title("⛑️ Equipment Fault Detection")
-st.write("Upload a fault detection image to classify it into 6 categories.")
+st.title("⛑️ Equipment Fault Detection system")
+st.write("Ust.write("Upload a sensor data image to classify it into 6 categories.")
+
 
 # LOAD MODEL
 @st.cache_resource
