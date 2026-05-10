@@ -1,10 +1,9 @@
 import torch
 import torch.nn.functional as F
 # Assuming build_model is defined in model.py or elsewhere
-from model import leak_model as build_model 
+from model.model import leak_model
 import gdown
 import json
-import os
 
 # Google Drive download
 def download_model():
