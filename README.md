@@ -1,3 +1,4 @@
+🚀 Live Demo: Click here to view the Deployment
 # Equipment Fault Detection using Sensor Data Images
 ### Human Capital Digitalisation Initiative (NCDMB | 3Logy | Seplat)
 
