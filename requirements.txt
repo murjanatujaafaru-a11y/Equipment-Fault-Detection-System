@@ -7,4 +7,3 @@ gdown
 huggingface_hub
 pandas
 scikit-learn
-tensorflow
