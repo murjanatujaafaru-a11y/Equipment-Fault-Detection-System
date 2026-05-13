@@ -4,18 +4,14 @@ import numpy as np
 import streamlit as st 
 
 
-# Your prediction logic from image_3bb1dc.png
-confidence = np.max(prediction) * 100
+# Your prediction logic from image_3bb1dc.pngimport torch.nn as nn
+# ... other imports ...
 
 class leak_model(nn.Module):
     def __init__(self, num_classes=6):
         super(leak_model, self).__init__()
-        # Load ResNet18 - this defaults to 3-channel (RGB) input
-        self.model = models.resnet18(weights=None)
-        
-        # Adjust the final layer for your 6 surface defect classes
-        num_ftrs = self.model.fc.in_features
-        self.model.fc = nn.Linear(num_ftrs, num_classes)
+        # ... your model layers ...
 
     def forward(self, x):
-        return self.model(x)
+        # ... your forward pass ...
+        return x
