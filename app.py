@@ -1,19 +1,18 @@
 import streamlit as st
 from PIL import Image
-import numpy as np  # Ensure numpy is imported for np.max and np.argmax
+import numpy as np 
 
 # Importing from your project structure
 from model.model import leak_model
 from services.inference import load_model, predict
 from utils.preprocessing import preprocess
 
-# UI SETUP
+# 1. UI SETUP
 st.set_page_config(page_title="Equipment Fault Detection system", page_icon="⚙️", layout="centered")
-
 st.title("⚙️ Equipment Fault Detection system")
 st.write("Upload a sensor data image to classify it into 6 categories.")
 
-# LOAD MODEL
+# 2. LOAD MODEL
 @st.cache_resource
 def get_model():
     try:
@@ -24,28 +23,31 @@ def get_model():
 
 model = get_model()
 
-# CLASS LABELS (Ensure these match your training)
+# 3. CLASS LABELS
 class_names = ["scratches", "crazing", "patches", "inclusion", "pitted_surface", "rolled-in_scale"]
 
-# FILE UPLOAD
+# 4. FILE UPLOAD & PROCESSING
 uploaded_file = st.file_uploader("Upload Image", type=["jpg", "png", "jpeg"])
 
 if uploaded_file:
-    # 1. Display the image
+    # Display the image
     image = Image.open(uploaded_file).convert("RGB")
     st.image(image, caption="Uploaded Image", use_container_width=True)
 
     with st.spinner("Analyzing..."):
-        # 2. THE FIX: Preprocess and then Predict to create the 'prediction' variable
-        # We use the 'preprocess' and 'predict' functions from your folders
+        # --- THE FIX STARTS HERE ---
+        # First: Preprocess the image
         processed_image = preprocess(image)
+        
+        # Second: Generate the 'prediction' variable
         prediction = predict(model, processed_image)
 
-        # 3. Calculate confidence and label NOW that prediction exists
+        # Third: Now that 'prediction' is defined, calculate confidence and label
         confidence = np.max(prediction) * 100
         label = class_names[np.argmax(prediction)]
+        # --- THE FIX ENDS HERE ---
 
-        # 4. Display Results
+        # 5. DISPLAY RESULTS
         if confidence < 50:
             st.warning(f"**Analysis Inconclusive**")
             st.write(f"The model is only {confidence:.2f}% sure. Please upload a clearer photo.")
