@@ -43,7 +43,12 @@ if uploaded_file:
         label = class_names[np.argmax(prediction)]
 
         # 4. SHOW RESULTS
-        if confidence < 50:
-            st.warning(f"Analysis Inconclusive (Confidence: {confidence:.2f}%)")
-        else:
-            st.success(f"**Result: {label}** ({confidence:.2f}%)")
+        # ... (After your prediction and confidence calculations)
+
+        # 4. SHOW RESULTS (To match WhatsApp Image 2026-05-10 at 21.59.25.jpeg)
+        
+        # Display the green box for the prediction
+        st.success(f"Prediction: **{label}**")
+        
+        # Display the confidence as standard white/gray text below the box
+        st.write(f"**Confidence: {confidence:.2f}%**")
