@@ -8,10 +8,4 @@ import streamlit as st
 # ... other imports ...
 
 class leak_model(nn.Module):
-    def __init__(self, num_classes=6):
-        super(leak_model, self).__init__()
-        # ... your model layers ...
-
-    def forward(self, x):
-        # ... your forward pass ...
-        return x
+    
