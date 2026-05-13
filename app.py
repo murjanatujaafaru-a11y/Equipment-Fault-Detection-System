@@ -1,7 +1,8 @@
 import streamlit as st
 from PIL import Image
+import numpy as np  # Ensure numpy is imported for np.max and np.argmax
 
-# This tells Python: "From the file model.py, import the function/class leak_model"
+# Importing from your project structure
 from model.model import leak_model
 from services.inference import load_model, predict
 from utils.preprocessing import preprocess
@@ -11,7 +12,6 @@ st.set_page_config(page_title="Equipment Fault Detection system", page_icon="⚙
 
 st.title("⚙️ Equipment Fault Detection system")
 st.write("Upload a sensor data image to classify it into 6 categories.")
-
 
 # LOAD MODEL
 @st.cache_resource
@@ -24,35 +24,31 @@ def get_model():
 
 model = get_model()
 
-# CLASS LABELS(As per the model's training)
-# idx_to_class = {
-#     0: "scratches",
-#     1: "crazing",
-#     2: "patches",
-#     3: "inclusion",
-#     4: "pitted_surface",
-#     5: "rolled-in_scale",
-# }
+# CLASS LABELS (Ensure these match your training)
+class_names = ["scratches", "crazing", "patches", "inclusion", "pitted_surface", "rolled-in_scale"]
 
 # FILE UPLOAD
 uploaded_file = st.file_uploader("Upload Image", type=["jpg", "png", "jpeg"])
 
 if uploaded_file:
+    # 1. Display the image
     image = Image.open(uploaded_file).convert("RGB")
     st.image(image, caption="Uploaded Image", use_container_width=True)
 
-    
-        # Assuming 'prediction' is the output of your model
-confidence = np.max(prediction) * 100
-label = class_names[np.argmax(prediction)]
+    with st.spinner("Analyzing..."):
+        # 2. THE FIX: Preprocess and then Predict to create the 'prediction' variable
+        # We use the 'preprocess' and 'predict' functions from your folders
+        processed_image = preprocess(image)
+        prediction = predict(model, processed_image)
 
-if confidence < 50:
-    result_text = "Analysis Inconclusive"
-    sub_text = f"The model is only {confidence:.2f}% sure. Please upload a clearer photo."
-    color = "orange"
-else:
-    result_text = f"Prediction: {label}"
-    sub_text = f"Confidence: {confidence:.2f}%"
-    color = "green"
+        # 3. Calculate confidence and label NOW that prediction exists
+        confidence = np.max(prediction) * 100
+        label = class_names[np.argmax(prediction)]
 
-# Then pass these variables to your UI (e.g., st.success or st.warning)
+        # 4. Display Results
+        if confidence < 50:
+            st.warning(f"**Analysis Inconclusive**")
+            st.write(f"The model is only {confidence:.2f}% sure. Please upload a clearer photo.")
+        else:
+            st.success(f"**Prediction: {label}**")
+            st.write(f"Confidence: {confidence:.2f}%")
