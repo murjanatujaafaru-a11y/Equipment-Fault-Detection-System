@@ -48,11 +48,14 @@ def load_model():
     return model
 
 # Predict
-def predict(model, tensor):
-    model.eval()
-    with torch.no_grad():
-        output = model(tensor)
-        probs = torch.softmax(output, dim=1)
-        confidence, pred = torch.max(probs, 1)
-        label = idx_to_class[pred.item()]
-    return label, confidence.item()
+
+def predict(image):
+    # ... existing code to load/process image ...
+    prediction = model.predict(image)
+    confidence = np.max(prediction)
+    
+    # Logic to handle the low confidence seen in your screenshot
+    if confidence < 0.50: 
+        return "Uncertain", confidence
+    else:
+        return class_names[np.argmax(prediction)], confidence
