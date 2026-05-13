@@ -30,16 +30,25 @@ idx_to_class = {v: k for k, v in class_to_idx.items()}
 
 # 3. Model Loading
 def load_model():
-    download_model()
-    num_classes = 6
-    model = leak_model(num_classes=num_classes)
+    # 1. Create the architecture
+    model = leak_model(num_classes=6)
     
-    # Load weights with strict=False to handle naming mismatches
-    state_dict = torch.load("model/leak_model.pth", map_location="cpu")
-    model.load_state_dict(state_dict, strict=False)
+    # 2. Get the correct path to your weights
+    # This ensures it works on Streamlit Cloud's folder structure
+    base_path = os.path.dirname(__file__)
+    weights_path = os.path.join(base_path, '../model/leak_model.pth')
     
-    model.eval()
-    return model
+    # 3. Load the weights
+    try:
+        # Load to CPU since Streamlit Cloud usually doesn't have GPUs
+        state_dict = torch.load(weights_path, map_location=torch.device('cpu'))
+        model.load_state_dict(state_dict)
+        model.eval() # CRITICAL: Sets the model to evaluation mode
+        return model
+    except Exception as e:
+        print(f"Error loading weights: {e}")
+        return model # Returns random model if loading fails (causing your issue)
+
 
 # 4. THE BIG FIX: Correcting the function signature and logic
 def predict(model, processed_img):
