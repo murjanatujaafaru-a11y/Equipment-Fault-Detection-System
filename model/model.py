@@ -1,5 +1,11 @@
 import torch.nn as nn
 from torchvision import models
+import numpy as np 
+import streamlit as st 
+import tensorflow as tf
+
+# Your prediction logic from image_3bb1dc.png
+confidence = np.max(prediction) * 100
 
 class leak_model(nn.Module):
     def __init__(self, num_classes=6):
